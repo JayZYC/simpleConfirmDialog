@@ -1,0 +1,118 @@
+package com.widgetpage.widget;
+
+import android.app.ActionBar;
+import android.app.Dialog;
+import android.content.Context;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.widget.Button;
+import android.widget.TextView;
+
+import ky.kangyi.com.widgetpage.R;
+
+
+/**
+ * Created by zyc on 2017/7/6.
+ */
+
+public class DialogConfirm {
+
+    private Context mContext;
+    private View mLayout;
+    private boolean cancelable = false;
+    Dialog dialog;
+
+    public DialogConfirm (Context mContext)
+    {
+        this.mContext = mContext;
+        LayoutInflater inflater = (LayoutInflater) mContext
+                .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+        mLayout = inflater.inflate(R.layout.dialog_confirm,null);
+    }
+
+    //home键能否取消 默认不能
+    public DialogConfirm setCancelable (boolean cancelable)
+    {
+        this.cancelable = cancelable;
+        return this;
+    }
+
+    //设置dialog标题文本
+    public DialogConfirm setTitle(String title)
+    {
+        ((TextView) mLayout.findViewById(R.id.dialog_title)).setText(title);
+        return this;
+    }
+
+    //设置标题颜色
+    public DialogConfirm setTitleColor(int id)
+    {
+        ((TextView) mLayout.findViewById(R.id.dialog_title)).setTextColor(id);
+        return this;
+    }
+
+    //设置dialog内容文本
+    public DialogConfirm setText(String text)
+    {
+        ((TextView) mLayout.findViewById(R.id.dialog_text)).setText(text);
+        return this;
+    }
+
+
+    //设置dialog按钮文本
+    public DialogConfirm setButton(String button)
+    {
+        ((TextView) mLayout.findViewById(R.id.dialog_button_right)).setText(button);
+        return this;
+    }
+
+    //设置右侧按钮文字颜色 默认为蓝色
+    public DialogConfirm setButtonColor(int id)
+    {
+        ((TextView) mLayout.findViewById(R.id.dialog_button_right)).setTextColor(id);
+        return this;
+    }
+
+    //设置隐藏标题
+    public DialogConfirm noTitle ()
+    {
+        ((TextView) mLayout.findViewById(R.id.dialog_title)).setVisibility(View.GONE);
+        return this;
+    }
+
+    //设置右边按钮点击事件
+    public DialogConfirm rightOnClickButton(final View.OnClickListener onClickListener)
+    {
+        ((TextView) mLayout.findViewById(R.id.dialog_button_right)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onClickListener.onClick(mLayout);
+
+            }
+        });
+        return this;
+    }
+
+    //设置左侧按钮是否显示
+    public DialogConfirm noLeftButton()
+    {
+        ((TextView) mLayout.findViewById(R.id.dialog_button_left)).setVisibility(View.GONE);
+        return this;
+    }
+
+    public Dialog DialogConfirm()
+    {
+        dialog = new Dialog(mContext,R.style.base_dialog);
+        dialog.setCancelable(cancelable);
+        dialog.addContentView(mLayout, new ActionBar.LayoutParams(
+                ActionBar.LayoutParams.FILL_PARENT, ActionBar.LayoutParams.WRAP_CONTENT));
+        mLayout.findViewById(R.id.dialog_button_left).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                dialog.dismiss();
+            }
+        });
+        return dialog;
+    }
+
+}
