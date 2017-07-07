@@ -1,0 +1,16 @@
+//在需要显示dialog的地方直接使用以上代码即可
+new DialogConfirm(mContext)
+                        .setTitle("登录失败")
+                        .setText("账号或密码错误")
+                        .setCancelable(false)
+                        .setButton("确认")
+                        .noLeftButton()
+                        .rightOnClickButton(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View v) {
+                                Log.d(TAG,"`````1`````````");
+                            }
+                        })
+                        .setButtonColor(mContext.getResources().getColor(R.color.blue))
+                        .DialogConfirm()
+                        .show();
