@@ -92,8 +92,8 @@ public class DialogConfirm {
         ((TextView) mLayout.findViewById(R.id.dialog_button_left)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onClickListener.onClick(mLayout);
                 dialog.dismiss();
+                onClickListener.onClick(mLayout);
             }
         });
         return this;
@@ -105,8 +105,9 @@ public class DialogConfirm {
         ((TextView) mLayout.findViewById(R.id.dialog_button_right)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                onClickListener.onClick(mLayout);
                 dialog.dismiss();
+                onClickListener.onClick(mLayout);
+                
             }
         });
         return this;
