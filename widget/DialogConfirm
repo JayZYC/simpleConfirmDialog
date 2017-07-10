@@ -1,4 +1,4 @@
-package widget;
+package com.widgetpage.widget;
 
 import android.app.ActionBar;
 import android.app.Dialog;
@@ -9,6 +9,7 @@ import android.widget.Button;
 import android.widget.TextView;
 
 import ky.kangyi.com.widgetpage.R;
+import ky.kangyi.com.widgetpage.utils.DialogUtil;
 
 
 /**
@@ -58,9 +59,15 @@ public class DialogConfirm {
         return this;
     }
 
+    //设置左边按钮文本
+    public DialogConfirm setLeftButton(String text)
+    {
+        ((TextView) mLayout.findViewById(R.id.dialog_button_left)).setText(text);
+        return this;
+    }
 
-    //设置dialog按钮文本
-    public DialogConfirm setButton(String button)
+    //设置右边按钮文本
+    public DialogConfirm setRightButton(String button)
     {
         ((TextView) mLayout.findViewById(R.id.dialog_button_right)).setText(button);
         return this;
@@ -80,6 +87,19 @@ public class DialogConfirm {
         return this;
     }
 
+    //设置左边按钮点击事件
+    public DialogConfirm leftOnClickButton(final View.OnClickListener onClickListener)
+    {
+        ((TextView) mLayout.findViewById(R.id.dialog_button_left)).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                onClickListener.onClick(mLayout);
+                dialog.dismiss();
+            }
+        });
+        return this;
+    }
+
     //设置右边按钮点击事件
     public DialogConfirm rightOnClickButton(final View.OnClickListener onClickListener)
     {
@@ -87,16 +107,23 @@ public class DialogConfirm {
             @Override
             public void onClick(View v) {
                 onClickListener.onClick(mLayout);
-
+                dialog.dismiss();
             }
         });
         return this;
     }
 
-    //设置左侧按钮是否显示
+    //隐藏左侧按钮
     public DialogConfirm noLeftButton()
     {
         ((TextView) mLayout.findViewById(R.id.dialog_button_left)).setVisibility(View.GONE);
+        return this;
+    }
+
+    //隐藏右侧按钮
+    public DialogConfirm noRightButton()
+    {
+        ((TextView) mLayout.findViewById(R.id.dialog_button_right)).setVisibility(View.GONE);
         return this;
     }
 
@@ -106,12 +133,6 @@ public class DialogConfirm {
         dialog.setCancelable(cancelable);
         dialog.addContentView(mLayout, new ActionBar.LayoutParams(
                 ActionBar.LayoutParams.FILL_PARENT, ActionBar.LayoutParams.WRAP_CONTENT));
-        mLayout.findViewById(R.id.dialog_button_left).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                dialog.dismiss();
-            }
-        });
         return dialog;
     }
 
