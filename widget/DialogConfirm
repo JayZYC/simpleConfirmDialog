@@ -5,11 +5,10 @@ import android.app.Dialog;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
-import android.widget.Button;
 import android.widget.TextView;
 
-import ky.kangyi.com.widgetpage.R;
-import ky.kangyi.com.widgetpage.utils.DialogUtil;
+import com.widgetpage.R;
+
 
 
 /**
