@@ -117,6 +117,7 @@ public class DialogConfirm {
     public DialogConfirm noLeftButton()
     {
         ((TextView) mLayout.findViewById(R.id.dialog_button_left)).setVisibility(View.GONE);
+         mLayout.findViewById(R.id.mid_line).setVisibility(View.INVISIBLE);
         return this;
     }
 
@@ -124,6 +125,7 @@ public class DialogConfirm {
     public DialogConfirm noRightButton()
     {
         ((TextView) mLayout.findViewById(R.id.dialog_button_right)).setVisibility(View.GONE);
+         mLayout.findViewById(R.id.mid_line).setVisibility(View.INVISIBLE);
         return this;
     }
 
