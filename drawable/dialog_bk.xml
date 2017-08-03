@@ -3,5 +3,5 @@
     <!--内部颜色-->
     <solid android:color="@color/white" />
     <!-- 圆角的幅度 -->
-    <corners android:radius="50px" />
+    <corners android:radius="10px" />
 </shape>
